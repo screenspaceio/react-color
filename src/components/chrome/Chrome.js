@@ -1,43 +1,83 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import reactCSS from 'reactcss'
-import merge from 'lodash/merge'
+'use strict';
 
-import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common'
-import ChromeFields from './ChromeFields'
-import ChromePointer from './ChromePointer'
-import ChromePointerCircle from './ChromePointerCircle'
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Chrome = undefined;
 
-export const Chrome = ({ width, onChange, disableAlpha, rgb, hsl, hsv, hex, renderers,
-  styles: passedStyles = {}, className = '', defaultView }) => {
-  const styles = reactCSS(merge({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactcss = require('reactcss');
+
+var _reactcss2 = _interopRequireDefault(_reactcss);
+
+var _merge = require('lodash/merge');
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _common = require('../common');
+
+var _ChromeFields = require('./ChromeFields');
+
+var _ChromeFields2 = _interopRequireDefault(_ChromeFields);
+
+var _ChromePointer = require('./ChromePointer');
+
+var _ChromePointer2 = _interopRequireDefault(_ChromePointer);
+
+var _ChromePointerCircle = require('./ChromePointerCircle');
+
+var _ChromePointerCircle2 = _interopRequireDefault(_ChromePointerCircle);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Chrome = ({
+  width = 225,
+  onChange,
+  disableAlpha = false,
+  rgb,
+  hsl,
+  hsv,
+  hex,
+  renderers,
+  styles: passedStyles = {},
+  className = '',
+  defaultView
+}) => {
+  const styles = (0, _reactcss2.default)((0, _merge2.default)({
     'default': {
       picker: {
-        width,
+        width: width,
         background: '#fff',
         borderRadius: '2px',
         boxShadow: '0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3)',
         boxSizing: 'initial',
-        fontFamily: 'Menlo',
+        fontFamily: 'Menlo'
       },
       saturation: {
         width: '100%',
         paddingBottom: '55%',
         position: 'relative',
         borderRadius: '2px 2px 0 0',
-        overflow: 'hidden',
+        overflow: 'hidden'
       },
       Saturation: {
-        radius: '2px 2px 0 0',
+        radius: '2px 2px 0 0'
       },
       body: {
-        padding: '16px 16px 12px',
+        padding: '16px 16px 12px'
       },
       controls: {
-        display: 'flex',
+        display: 'flex'
       },
       color: {
-        width: '32px',
+        width: '32px'
       },
       swatch: {
         marginTop: '6px',
@@ -45,120 +85,126 @@ export const Chrome = ({ width, onChange, disableAlpha, rgb, hsl, hsv, hex, rend
         height: '16px',
         borderRadius: '8px',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'hidden'
       },
       active: {
         absolute: '0px 0px 0px 0px',
         borderRadius: '8px',
         boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)',
-        background: `rgba(${ rgb.r }, ${ rgb.g }, ${ rgb.b }, ${ rgb.a })`,
-        zIndex: '2',
+        background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
+        zIndex: '2'
       },
       toggles: {
-        flex: '1',
+        flex: '1'
       },
       hue: {
         height: '10px',
         position: 'relative',
-        marginBottom: '8px',
+        marginBottom: '8px'
       },
       Hue: {
-        radius: '2px',
+        radius: '2px'
       },
       alpha: {
         height: '10px',
-        position: 'relative',
+        position: 'relative'
       },
       Alpha: {
-        radius: '2px',
-      },
+        radius: '2px'
+      }
     },
     'disableAlpha': {
       color: {
-        width: '22px',
+        width: '22px'
       },
       alpha: {
-        display: 'none',
+        display: 'none'
       },
       hue: {
-        marginBottom: '0px',
+        marginBottom: '0px'
       },
       swatch: {
         width: '10px',
         height: '10px',
-        marginTop: '0px',
-      },
-    },
-  }, passedStyles), { disableAlpha })
+        marginTop: '0px'
+      }
+    }
+  }, passedStyles), { disableAlpha: disableAlpha });
 
-  return (
-    <div style={ styles.picker } className={ `chrome-picker ${ className }` }>
-      <div style={ styles.saturation }>
-        <Saturation
-          style={ styles.Saturation }
-          hsl={ hsl }
-          hsv={ hsv }
-          pointer={ ChromePointerCircle }
-          onChange={ onChange }
-        />
-      </div>
-      <div style={ styles.body }>
-        <div style={ styles.controls } className="flexbox-fix">
-          <div style={ styles.color }>
-            <div style={ styles.swatch }>
-              <div style={ styles.active } />
-              <Checkboard renderers={ renderers } />
-            </div>
-          </div>
-          <div style={ styles.toggles }>
-            <div style={ styles.hue }>
-              <Hue
-                style={ styles.Hue }
-                hsl={ hsl }
-                pointer={ ChromePointer }
-                onChange={ onChange }
-              />
-            </div>
-            <div style={ styles.alpha }>
-              <Alpha
-                style={ styles.Alpha }
-                rgb={ rgb }
-                hsl={ hsl }
-                pointer={ ChromePointer }
-                renderers={ renderers }
-                onChange={ onChange }
-              />
-            </div>
-          </div>
-        </div>
-        <ChromeFields
-          rgb={ rgb }
-          hsl={ hsl }
-          hex={ hex }
-          view={ defaultView }
-          onChange={ onChange }
-          disableAlpha={ disableAlpha }
-        />
-      </div>
-    </div>
-  )
-}
+  return _react2.default.createElement(
+    'div',
+    { style: styles.picker, className: 'chrome-picker ' + className },
+    _react2.default.createElement(
+      'div',
+      { style: styles.saturation },
+      _react2.default.createElement(_common.Saturation, {
+        style: styles.Saturation,
+        hsl: hsl,
+        hsv: hsv,
+        pointer: _ChromePointerCircle2.default,
+        onChange: onChange
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      { style: styles.body },
+      _react2.default.createElement(
+        'div',
+        { style: styles.controls, className: 'flexbox-fix' },
+        _react2.default.createElement(
+          'div',
+          { style: styles.color },
+          _react2.default.createElement(
+            'div',
+            { style: styles.swatch },
+            _react2.default.createElement('div', { style: styles.active }),
+            _react2.default.createElement(_common.Checkboard, { renderers: renderers })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: styles.toggles },
+          _react2.default.createElement(
+            'div',
+            { style: styles.hue },
+            _react2.default.createElement(_common.Hue, {
+              style: styles.Hue,
+              hsl: hsl,
+              pointer: _ChromePointer2.default,
+              onChange: onChange
+            })
+          ),
+          _react2.default.createElement(
+            'div',
+            { style: styles.alpha },
+            _react2.default.createElement(_common.Alpha, {
+              style: styles.Alpha,
+              rgb: rgb,
+              hsl: hsl,
+              pointer: _ChromePointer2.default,
+              renderers: renderers,
+              onChange: onChange
+            })
+          )
+        )
+      ),
+      _react2.default.createElement(_ChromeFields2.default, {
+        rgb: rgb,
+        hsl: hsl,
+        hex: hex,
+        view: defaultView,
+        onChange: onChange,
+        disableAlpha: disableAlpha
+      })
+    )
+  );
+};
 
 Chrome.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  disableAlpha: PropTypes.bool,
-  styles: PropTypes.object,
-  defaultView: PropTypes.oneOf([
-    "hex",
-    "rgb",
-    "hsl",
-  ]),
-}
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  disableAlpha: _propTypes2.default.bool,
+  styles: _propTypes2.default.object,
+  defaultView: _propTypes2.default.oneOf(["hex", "rgb", "hsl"])
+};
 
-Chrome.defaultProps = {
-  width: 225,
-  disableAlpha: false,
-  styles: {},
-}
-
-export default ColorWrap(Chrome)
+exports.default = (0, _common.ColorWrap)(Chrome);
